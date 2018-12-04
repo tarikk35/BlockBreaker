@@ -78,6 +78,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66420de518632194b8786a81ee16a045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioObject: {fileID: 0}
+  particleEffect: {fileID: 1432579927867744, guid: 4c7347ef314374141a97c2ca2264d3c3,
+    type: 2}
 --- !u!212 &212786617324141798
 SpriteRenderer:
   m_ObjectHideFlags: 1

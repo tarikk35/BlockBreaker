@@ -14,6 +14,8 @@ public class SceneLoader : MonoBehaviour {
     public void LoadStartingScene()
     {
         SceneManager.LoadScene(0);
+        GameSession gs = new GameSession();
+        gs.ResetScore();
     }
 
 }

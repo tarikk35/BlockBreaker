@@ -7,11 +7,10 @@ public class Ball : MonoBehaviour {
 
     [SerializeField] Paddle paddle;
     [SerializeField] float bouncePowerY = 12f;
-    [SerializeField] float bouncePowerX = 0f;
 
     Vector2 paddleDistance;
 
-    bool isStarted = false;
+    public bool isStarted =false;
 
 	// Use this for initialization
 	void Start ()
@@ -23,7 +22,7 @@ public class Ball : MonoBehaviour {
 	void Update ()
     {
         if(!isStarted)
-        {           
+        {
             LockBallToPaddle();
             LaunchOnClick();
         }
@@ -35,7 +34,11 @@ public class Ball : MonoBehaviour {
         // button0 = Left Mouse
         if(Input.GetMouseButtonDown(0))
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(bouncePowerX, bouncePowerY);
+            float mousePos = (Input.mousePosition.x / Screen.width) * paddle.screenWidthUnits;
+            Vector2 vectorPos = new Vector2(transform.position.x, transform.position.y);
+            vectorPos.x = Mathf.Clamp(mousePos, paddle.minimumX, paddle.maximumX);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(vectorPos.x, bouncePowerY);
+            GetComponent<AudioSource>().Play();
             isStarted = true;
         }
     }

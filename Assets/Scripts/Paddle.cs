@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Paddle : MonoBehaviour {
 
-    [SerializeField] float screenWidthUnits;
-    [SerializeField] float minimumX = 1.75f;
-    [SerializeField] float maximumX = 14.25f;
+    [SerializeField] public float screenWidthUnits;
+    [SerializeField] public float minimumX = 1.75f;
+    [SerializeField] public float maximumX = 14.25f;
+
 	// Update is called once per frame
 	void Update () {
         float mousePos = (Input.mousePosition.x / Screen.width) * screenWidthUnits;
@@ -14,4 +15,8 @@ public class Paddle : MonoBehaviour {
         vectorPos.x = Mathf.Clamp(mousePos,minimumX,maximumX); 
         transform.position = vectorPos;
 	}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        GetComponent<AudioSource>().Play();
+    }
 }
