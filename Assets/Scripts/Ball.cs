@@ -7,8 +7,10 @@ public class Ball : MonoBehaviour {
 
     [SerializeField] Paddle paddle;
     [SerializeField] float bouncePowerY = 12f;
+    [SerializeField] float randomFactor = 0.2f;
 
     Vector2 paddleDistance;
+    Rigidbody2D rb2d;
 
     public bool isStarted =false;
 
@@ -16,6 +18,7 @@ public class Ball : MonoBehaviour {
 	void Start ()
     {
         paddleDistance = transform.position - paddle.transform.position;
+        rb2d = GetComponent<Rigidbody2D>();
     }
 	
 	// Update is called once per frame
@@ -25,8 +28,7 @@ public class Ball : MonoBehaviour {
         {
             LockBallToPaddle();
             LaunchOnClick();
-        }
-        
+        }        
     }
 
     private void LaunchOnClick()
@@ -37,7 +39,7 @@ public class Ball : MonoBehaviour {
             float mousePos = (Input.mousePosition.x / Screen.width) * paddle.screenWidthUnits;
             Vector2 vectorPos = new Vector2(transform.position.x, transform.position.y);
             vectorPos.x = Mathf.Clamp(mousePos, paddle.minimumX, paddle.maximumX);
-            GetComponent<Rigidbody2D>().velocity = new Vector2(vectorPos.x, bouncePowerY);
+            rb2d.velocity = new Vector2(vectorPos.x, bouncePowerY);
             GetComponent<AudioSource>().Play();
             isStarted = true;
         }
@@ -47,5 +49,10 @@ public class Ball : MonoBehaviour {
     {
         Vector2 paddlePos = new Vector2(paddle.transform.position.x, paddle.transform.position.y);
         transform.position = paddlePos + paddleDistance;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Vector2 velocityFix = new Vector2(UnityEngine.Random.Range(0f, randomFactor), UnityEngine.Random.Range(0f, randomFactor));
+        rb2d.velocity += velocityFix;
     }
 }

@@ -9,5 +9,4 @@ public class LoseCollider : MonoBehaviour {
     {
         SceneManager.LoadScene("EndingMenu");
     }
-
 }

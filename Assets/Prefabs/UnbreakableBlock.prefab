@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 61471281593645696}
   - component: {fileID: 114418808991721416}
   m_Layer: 0
-  m_Name: Block
-  m_TagString: Untagged
+  m_Name: UnbreakableBlock
+  m_TagString: Unbreakable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -117,7 +117,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e38eb32cea3564a46b1ac94c4ace3051, type: 3}
-  m_Color: {r: 0.35686275, g: 0.86666673, b: 0.47450984, a: 1}
+  m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Level2.unity
     guid: 857d164c9262a314a820ac3db1bebf8d
   - enabled: 1
-    path: Assets/Scenes/EndingMenu.unity
+    path: Assets/Scenes/WinMenu.unity
     guid: f80d2ef22423ba84e802fbce39819535
+  - enabled: 1
+    path: Assets/Scenes/EndingMenu.unity
+    guid: 4851f57a0c6356c4bb38b2fb4917653a
   m_configObjects: {}

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Level : MonoBehaviour {
 
     int blockCount = 0;
+    GameSession gs;
 	
 	public void AddBreakableBlock()
     {
@@ -17,7 +18,9 @@ public class Level : MonoBehaviour {
         if(blockCount<=0)
         {
             SceneLoader sceneLoader=FindObjectOfType<SceneLoader>();
-            sceneLoader.LoadNextScene();
-        }
+            gs = new GameSession();
+            gs.LevelUp();
+            sceneLoader.LoadNextScene();       
+        }        
     }
 }

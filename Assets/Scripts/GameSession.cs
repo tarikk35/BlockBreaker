@@ -2,18 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameSession : MonoBehaviour {
  
     [Range(0.1f,4f)][SerializeField] float gameSpeed = 1f;
     [SerializeField] int perBlockScore = 100;
     TextMeshProUGUI scoreText;
+
+    static int previousLevelScore=0;
     static int currentScore = 0;
+    static int levelCount = 0;
+    static int highestLevel = 0;
+    static Sprite levelSprite;
 
     private void Start()
     {
+        Debug.Log(previousLevelScore);
         scoreText = FindObjectOfType<TextMeshProUGUI>();
         scoreText.text = currentScore.ToString();
+        if(SceneManager.GetActiveScene().buildIndex!=SceneManager.sceneCount-1)
+        {
+           levelSprite = GameObject.Find("BackgroundImage").GetComponent<SpriteRenderer>().sprite;
+        }        
     }
 
     // Update is called once per frame
@@ -29,8 +40,42 @@ public class GameSession : MonoBehaviour {
 
     public void ResetScore()
     {
-        Debug.Log(currentScore);
         currentScore = 0;
-        Debug.Log(currentScore);
+        previousLevelScore = 0;
+    }
+
+    public void PreviousScore()
+    {
+        currentScore = previousLevelScore;
+    }
+
+    public int GetLevel()
+    {       
+        return levelCount;
+    }
+
+    public void ResetLevel()
+    {
+        levelCount = 0;
+    }
+
+    public void LevelUp()
+    {
+        levelCount++;
+        previousLevelScore = currentScore;
+        if (levelCount > highestLevel)
+        {
+            highestLevel = levelCount;
+        }
+    }
+
+    public Sprite GetPreviousSprite()
+    {
+        return levelSprite;
+    }
+
+    public int GetScore()
+    {
+        return currentScore;
     }
 }

@@ -6,6 +6,8 @@ public class Quit : MonoBehaviour {
 
 	public void QuitApplication()
     {
-        Application.Quit();
+        GameSession gs=new GameSession();
+        gs.ResetScore();
+        Application.Quit();       
     }
 }
