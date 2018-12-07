@@ -2,7 +2,8 @@
 
 
 
-Hello, I made the classic Breakout game with Minecraft theme where you destroy various Minecraft Objects .
+Hello, I made the classic Breakout game with Minecraft theme where you can destroy various Minecraft entities.
+
 
 
 
