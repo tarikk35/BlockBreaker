@@ -7,8 +7,7 @@ public class ScoreText : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
         gameObject.GetComponent<TextMeshProUGUI>().text ="Skor : "+ new GameSession().GetScore().ToString();
-	}
-	
+        Debug.Log("sads");
+	}	
 }

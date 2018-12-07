@@ -9,6 +9,7 @@ public class GameSession : MonoBehaviour {
     [Range(0.1f,4f)][SerializeField] float gameSpeed = 1f;
     [SerializeField] int perBlockScore = 100;
     TextMeshProUGUI scoreText;
+    [SerializeField] bool isAutoPlay = false;
 
     static int previousLevelScore=0;
     static int currentScore = 0;
@@ -18,13 +19,15 @@ public class GameSession : MonoBehaviour {
 
     private void Start()
     {
-        Debug.Log(previousLevelScore);
-        scoreText = FindObjectOfType<TextMeshProUGUI>();
-        scoreText.text = currentScore.ToString();
+        if(SceneManager.GetActiveScene().buildIndex>0&&SceneManager.GetActiveScene().buildIndex<(SceneManager.sceneCountInBuildSettings-2))
+        {
+            scoreText = FindObjectOfType<TextMeshProUGUI>();
+            scoreText.text = currentScore.ToString();
+        }            
         if(SceneManager.GetActiveScene().buildIndex!=SceneManager.sceneCount-1)
         {
            levelSprite = GameObject.Find("BackgroundImage").GetComponent<SpriteRenderer>().sprite;
-        }        
+        }    
     }
 
     // Update is called once per frame
@@ -77,5 +80,10 @@ public class GameSession : MonoBehaviour {
     public int GetScore()
     {
         return currentScore;
+    }
+
+    public bool IsAutoPlayEnabled()
+    {
+        return isAutoPlay;
     }
 }

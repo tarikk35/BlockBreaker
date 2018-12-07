@@ -18,7 +18,7 @@ public class Level : MonoBehaviour {
         if(blockCount<=0)
         {
             SceneLoader sceneLoader=FindObjectOfType<SceneLoader>();
-            gs = new GameSession();
+            gs = gameObject.AddComponent<GameSession>() as GameSession;
             gs.LevelUp();
             sceneLoader.LoadNextScene();       
         }        

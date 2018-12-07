@@ -7,7 +7,7 @@ public class Ball : MonoBehaviour {
 
     [SerializeField] Paddle paddle;
     [SerializeField] float bouncePowerY = 12f;
-    [SerializeField] float randomFactor = 0.2f;
+    //[SerializeField] float randomFactor = 0.2f;
 
     Vector2 paddleDistance;
     Rigidbody2D rb2d;
@@ -52,7 +52,7 @@ public class Ball : MonoBehaviour {
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector2 velocityFix = new Vector2(UnityEngine.Random.Range(0f, randomFactor), UnityEngine.Random.Range(0f, randomFactor));
-        rb2d.velocity += velocityFix;
+        //Vector2 velocityFix = new Vector2(UnityEngine.Random.Range(0f, randomFactor), UnityEngine.Random.Range(0f, randomFactor));
+        //rb2d.velocity += velocityFix;
     }
 }

@@ -6,8 +6,9 @@ public class Quit : MonoBehaviour {
 
 	public void QuitApplication()
     {
-        GameSession gs=new GameSession();
+        GameSession gs = gameObject.GetComponent<GameSession>();
         gs.ResetScore();
-        Application.Quit();       
+        GameObject.Find("ClickSound").GetComponent<ClipPlayer>().PlayClickSound();
+        Application.Quit();
     }
 }

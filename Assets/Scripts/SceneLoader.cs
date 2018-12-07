@@ -6,24 +6,54 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour {
 
     GameSession gs;
+    float clipLength;
+    int sceneIndex;
+
+    private void Start()
+    {
+        gs = gameObject.GetComponent<GameSession>();
+    }
+
+    public void StartGame()
+    {
+        PlayClickSound();
+        Invoke("LoadNextScene",clipLength);
+    }
 
     public void LoadNextScene()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;       
-        SceneManager.LoadScene(currentSceneIndex + 1);
+        gs = gameObject.GetComponent<GameSession>();
+        sceneIndex = SceneManager.GetActiveScene().buildIndex+1;
+        LoadScene();
     }
 
     public void LoadStartingScene()
     {
-        gs = new GameSession();
+        gs = gameObject.GetComponent<GameSession>();
         gs.ResetScore();
-        SceneManager.LoadScene(0);     
+        PlayClickSound();
+        sceneIndex = 0;
+        Invoke("LoadScene", clipLength);     
     }
+
     public void PlayAgain()
     {
-        gs = new GameSession();
-        int currentSceneIndex = gs.GetLevel();
+        gs = gameObject.GetComponent<GameSession>();
+        sceneIndex = gs.GetLevel()+1;
         gs.PreviousScore();
-        SceneManager.LoadScene(currentSceneIndex+1);
+        PlayClickSound();
+        Invoke("LoadScene", clipLength);
+    }
+    
+    void PlayClickSound()
+    {
+        ClipPlayer ac = GameObject.Find("ClickSound").GetComponent<ClipPlayer>();
+        clipLength=ac.GetClipLenght();
+        ac.PlayClickSound();
+    }
+
+    void LoadScene()
+    {
+        SceneManager.LoadScene(sceneIndex);
     }
 }
